@@ -60,18 +60,13 @@ shortComm = rst.RestrictionBatch(shortC)
 
 
 #Download files from the FTP server
-def getNewClones(download = True, onlyType = True, vtype = 'BAC', chunk_size=5000, email = 'user@github.com/ewinden/bacmapping'):
-    #Set taxid and version (most recent human)
-    version = '118'
-    taxid = '9606'
-    species = 'Homo_sapiens'
-    
+def getNewClones(download = True, onlyType = True, vtype = 'BAC', chunk_size=5000, email = 'user@github.com/ewinden/bacmapping', version= '118', taxid = '9606', species='Homo_sapiens'):
     #Setup names
     cloneacstate = 'clone_acstate_'+taxid+'.out'
     librarys = 'library_'+taxid+'.out'
     ucname = version + '.unique_'  
 
-    #Setup folders
+    #Setup folders6
     cwd = os.getcwd()
     clonesDetails = os.path.join(cwd,'details')
     clonesSequences = os.path.join(cwd,'sequences')
@@ -209,11 +204,7 @@ def getNewClones(download = True, onlyType = True, vtype = 'BAC', chunk_size=500
         #    SeqIO.write(record, os.path.join(clonesSequences, str(record.id) + '.fasta'), 'fasta')
 
 #Get only BAC libraries        
-def narrowDownLibraries():
-    #Set taxid and version (most recent human)
-    version = '118'
-    taxid = '9606'
-    
+def narrowDownLibraries(version= '118', taxid = '9606', species='Homo_sapiens'):
     #Files
     cwd = os.getcwd()
     clonesDetails = os.path.join(cwd,'details')
@@ -316,11 +307,7 @@ def makeIndexFiles(loc):
     indset.to_csv(os.path.join(loc,'index.csv'))
 
 #Map the clones detailed in clone_acstate_taxid 
-def mapSequencedClones(cpustouse=2, maxcuts=50):
-    #Set taxid and version (most recent human)
-    version = '118'
-    taxid = '9606'
-    
+def mapSequencedClones(cpustouse=2, maxcuts=50, taxid = '9606'):   
      #Prep folders
     cwd = os.getcwd()
     clonesDetails = os.path.join(cwd,'details')
@@ -433,14 +420,8 @@ def mapPlacedClones(cpustouse=1, maxcuts=50, chunk_size=500):
 
 #Count BACs
 def countPlacedBACs():
-    #Set taxid and version (most recent human)
-    version = '118'
-    taxid = '9606'
-    
     #Prep folders
     cwd = os.getcwd()
-    clonesDetails = os.path.join(cwd,'details')
-    clonesSequences = os.path.join(cwd,'sequences')
     clonesMapsBase = os.path.join(cwd,'maps')
     clonesMaps = os.path.join(clonesMapsBase,'placed')
     
@@ -546,11 +527,7 @@ def getAverageLength():
         w.writerows(averages)
        
 #Get statistics for sequenced clones
-def getSequencedClonesStats(include_libraries=True):
-    #Set taxid and version (most recent human)
-    version = '118'
-    taxid = '9606'
-    
+def getSequencedClonesStats(include_libraries=True, taxid = '9606'):
     #Prep folders
     cwd = os.getcwd()
     clonesDetails = os.path.join(cwd,'details')
@@ -583,11 +560,7 @@ def getSequencedClonesStats(include_libraries=True):
         w.writerows(comlist)
 
 #return a row given a name
-def getRow(name):
-    #Set taxid and version (most recent human)
-    version = '118'
-    taxid = '9606'
-    
+def getRow(name, taxid = '9606'):
      #Prep folders
     cwd = os.getcwd()
     clonesDetails = os.path.join(cwd,'details')
@@ -991,15 +964,7 @@ def findOverlappingBACs(name):
     return(totset)
 
 #get new clones only a lib and chrom
-def getNewClonesMiniset(email, lib, acc, chrom, onlyType=True, chunk_size = 5000):
-    onlyType = True
-    vtype = 'BAC'
-
-    #Set taxid and version (most recent human)
-    version = '118'
-    taxid = '9606'
-    species = 'Homo_sapiens'
-
+def getNewClonesMiniset(email, lib, acc, chrom, onlyType=True, vtype = 'BAC', chunk_size = 5000, version= '118', taxid = '9606', species='Homo_sapiens'):
     #Setup names
     cloneacstate = 'clone_acstate_'+taxid+'.out'
     librarys = 'library_'+taxid+'.out'
